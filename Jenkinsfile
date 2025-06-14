@@ -32,15 +32,7 @@ pipeline {
             }
         }
 
-        stage('Docker Build') {
-            steps {
-                script {
-                    sh "docker build -t $IMAGE_NAME ."
-                }
-            }
-        }
-
-        tage('Push to Docker Hub') {
+        stage('Push to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh """
