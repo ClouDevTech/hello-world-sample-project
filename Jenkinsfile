@@ -27,19 +27,13 @@ pipeline {
             }
         }
 
-        // stage('Build Docker Image with Kaniko') {
-        //     steps {
-        //         container('kaniko') {
-        //             script {
-
-        //                 // Run Kaniko Build Command
-        //                 sh "pwd"
-        //                 sh "ls -a"
-        //                 sh "/kaniko/executor --dockerfile `pwd`/Dockerfile --context `pwd` --destination=us-central1-docker.pkg.dev/cloudev-tech-trail/cloudev-practical/hello-world:v1 --verbosity=debug" 
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Docker Build') {
+            steps {
+                script {
+                    sh "docker build -t java-tst-app:latest ."
+                }
+            }
+        }
 
     }
 }
