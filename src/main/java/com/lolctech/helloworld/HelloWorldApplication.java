@@ -41,6 +41,12 @@ public class HelloWorldApplication {
             personRepository.save(new Person("John Doe", "123 Main St"));
             personRepository.save(new Person("Jane Steve", "456 Maple Ave"));
             personRepository.save(new Person("Isuru Herath", "Colombo"));
+            personRepository.save(new Person("John Doe", "123 Main St"));
+            personRepository.save(new Person("Jane Steve", "456 Maple Ave"));
+            personRepository.save(new Person("Isuru Herath", "Colombo"));
+            personRepository.save(new Person("John Doe", "123 Main St"));
+            personRepository.save(new Person("Jane Steve", "456 Maple Ave"));
+            personRepository.save(new Person("Isuru Herath", "Colombo"));
         };
     }
 }
