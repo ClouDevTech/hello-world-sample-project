@@ -6,6 +6,10 @@ pipeline {
         maven 'mvn'
     }
 
+    environment {
+        IMAGE_NAME = "isurupathumherath/cloudev-edu-sep:latest"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -33,18 +37,17 @@ pipeline {
 
         stage('build image') {
             steps {
-                sh "docker build -t isurupathumherath/cloudev-edu-sep:latest ."
+            sh "docker build -t $IMAGE_NAME ."
             }
         }
 
         stage('push image') {
             steps {
-                sh "docker push isurupathumherath/cloudev-edu-sep:latest"
+                withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+            sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+            sh "docker push $IMAGE_NAME"
+            sh "docker logout"
             }
         }
+        }
     }
-}
-
-
-
-
