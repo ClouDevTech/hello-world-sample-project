@@ -31,8 +31,17 @@ pipeline {
             }
         }
 
+        stage('build image') {
+            steps {
+                sh "docker build -t isurupathumherath/cloudev-edu-sep:latest ."
+            }
+        }
 
-
+        stage('push image') {
+            steps {
+                sh "docker push isurupathumherath/cloudev-edu-sep:latest"
+            }
+        }
     }
 }
 
